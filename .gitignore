@@ -17,6 +17,10 @@
 *.synctex.gz
 pass*.log
 biber.log
+# Artefactos Beamer
+*.nav
+*.snm
+*.vrb
 
 # Extracciones temporales
 _pdf_extract/
