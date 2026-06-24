@@ -16,7 +16,7 @@
 > trabajan en paralelo, dividir por área (ver abajo) y hacer `push` seguido.
 
 ## Repos
-- **Reportes (este):** `photoacoustic_daq-docs` → github.com/zaned897/photoacoustic-reportes (rama `main`).
+- **Reportes (este):** `photoacoustic_daq-docs` → github.com/zaned897/photoacoustic_daq-docs (rama `main`).
 - **Código/firmware:** `photoacoustic_daq` → github.com/zaned897/photoacoustic_daq (ramas `main`, `feature/...`). Independiente de este.
 
 ## Estado actual (2026-06-23)
