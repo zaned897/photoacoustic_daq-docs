@@ -25,3 +25,11 @@ biber.log
 # Extracciones temporales
 _pdf_extract/
 *_extract/
+
+# Python (venv, cache) y capturas crudas del osciloscopio
+.venv/
+**/.venv/
+__pycache__/
+*.pyc
+scope_screen.*
+scope_CH*.csv
