@@ -38,7 +38,16 @@ def load(path):
         except ValueError:
             continue  # salta cabecera/líneas no numéricas
     a = np.array(rows, float)
-    return a[:, 0] * sc, a[:, 1]
+    t = a[:, 0] * sc
+    v = a[:, 1]
+    # Recorta relleno de exportación: conserva el prefijo de tiempo estrictamente
+    # creciente (algunos osciloscopios rellenan el buffer con filas 0,0 al final).
+    if len(t) > 1:
+        bad = np.where(np.diff(t) <= 0)[0]
+        if len(bad):
+            cut = bad[0] + 1
+            t, v = t[:cut], v[:cut]
+    return t, v
 
 
 def main():
