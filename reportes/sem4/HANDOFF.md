@@ -59,3 +59,4 @@
 ## Bitácora (una línea por sesión, al terminar)
 - 2026-06-23 — Windows/Claude: Bloque 0 (sync repos OK, ambos limpios). Creado este HANDOFF. Pendiente: capturar las 9 fotos + fechas.
 - 2026-06-24 — Mac/Claude: pull de `scope_capture.py` + `.gitignore`. Creado `figuras/CAPTURAS-PENDIENTES.md` (9 figuras clasificadas A/B/C + procedimientos). `Pipfile` con deps. Pendiente: capturas + datos Grupo C + fechas.
+- 2026-06-24 — Windows/Claude: **pipeline de captura validado** (cuadrada cal ~1 kHz; formato `Time (us|ms),Voltage (v)` parseable). Creada carpeta `capturas/` (CSVs crudos) + `figuras/scripts/plot_capturas.py` (CSV→figura, autoescala/2 canales). Referencia: `capturas/cal_1kHz_ch2.csv`. Listos para capturar Grupo B/C con señales reales.
