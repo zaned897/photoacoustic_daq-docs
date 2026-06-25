@@ -141,6 +141,17 @@ Referencia de medición & Osciloscopio (200 MS/s) \\
 
 \section{Arquitectura del Sistema de Adquisición (DAQ)}
 
+El experimento completo sigue el flujo de la Figura~\ref{fig:sistema}: excitación
+láser pulsada, generación fotoacústica en el tejido, adquisición en ráfaga de alta
+velocidad y transmisión en el tiempo muerto entre disparos hacia la PC. Este reporte se
+centra en el subsistema de adquisición (DAQ).
+
+\figph{sistema-experimento.png}{Visión general del experimento (concepto
+\textit{store-and-forward}): excitación láser $\to$ generación fotoacústica $\to$
+adquisición en ráfaga $\to$ \textit{buffer} $\to$ transmisión en el tiempo muerto $\to$
+procesamiento en PC. Diagrama conceptual; la implementación de este periodo opera a
+54~MS/s con 270 muestras (ventana 5~µs), ver Tabla~\ref{tab:bringup}.}{sistema}
+
 El DAQ está organizado en seis etapas encadenadas (Figura~\ref{fig:daq-arq}). El
 diseño explota el bajo ciclo de trabajo del láser mediante una estrategia
 \textbf{\textit{store-and-forward}}: se captura una ráfaga a alta velocidad en la
