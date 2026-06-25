@@ -17,6 +17,12 @@ Usa nombres descriptivos (NO `scope_CHn.csv` — ese patrón está en `.gitignor
 - `pulsos_corriente.csv` — Driver V2.0.
 - `daq_rafaga.csv` — ráfaga del DAQ (54 MSPS / 12 bit).
 
+## Inventario actual
+| Archivo | Adquisición | Observado | Estado |
+|---|---|---|---|
+| `cal_1kHz_ch2.csv` | cuadrada de calibración, 1 MS/s, 3200 pts | ~1 kHz, Vpp ~7.2 V | ✓ valida el pipeline |
+| `laser_wave.csv` | 200 MS/s, 2560 pts útiles (12.8 µs) | base ~50 V, pico negativo agudo (~−47 V) en t≈−2.8 µs, escalón en t=0 | ⚠️ confirmar qué nodo mide (¿monitor del driver?) · screenshot en `../evidencia/screenshots/firstwave.bmp` |
+
 ## Generar una figura
 ```bash
 cd ../figuras/scripts
