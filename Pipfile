@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# Figuras del reporte (reportes/sem4/figuras/scripts/gen_figs.py)
+numpy = "*"
+matplotlib = "*"
+# Captura del osciloscopio (reportes/sem4/tools/scope_capture.py)
+# Nota: en Mac requiere ademas  brew install libusb
+pyvisa = "*"
+pyvisa-py = "*"
+pyusb = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

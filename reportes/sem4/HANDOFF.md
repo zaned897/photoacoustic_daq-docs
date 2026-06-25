@@ -19,16 +19,23 @@
 - **Reportes (este):** `photoacoustic_daq-docs` → github.com/zaned897/photoacoustic_daq-docs (rama `main`).
 - **Código/firmware:** `photoacoustic_daq` → github.com/zaned897/photoacoustic_daq (ramas `main`, `feature/...`). Independiente de este.
 
-## Estado actual (2026-06-23)
+## Estado actual (2026-06-24)
 - `avances_sem4.tex` — **16 pág**, enfoque **DAQ-central**, detección → trabajo futuro. Compila limpio.
 - `presentacion/presentacion_sem4.tex` — **21 láminas** (tema metropolis).
 - Figuras técnicas reales: generadas por `figuras/scripts/gen_figs.py` (matplotlib) — ya incluidas.
-- Figuras de foto: **PLACEHOLDERS pendientes** (el macro `\figph` compila igual).
+- Figuras de foto: **PLACEHOLDERS pendientes** (el macro `\figph` compila igual). Lista de
+  trabajo detallada en `figuras/CAPTURAS-PENDIENTES.md` (Grupos A/B/C + procedimientos).
+- Herramienta `tools/scope_capture.py` (SCPI/USB-TMC): captura pantalla+CSV del osciloscopio.
+- `Pipfile` con deps Python (numpy, matplotlib, pyvisa/pyvisa-py/pyusb) para banco+figuras.
 
 ## Pendientes para terminar
-- [ ] **9 fotos/capturas** en `figuras/` (nombres con guion `-`, PNG): `ringing-falso`,
-      `ruido-em`, `pulsos-corriente`, `potencia-laser`, `placa-acrilico`, `montaje`,
-      `daq-fpga-etapas`, `daq-captura`, `bringup-etapas`. (Detalle en `README.md`.)
+- [ ] **9 figuras** en `figuras/` (nombres con guion `-`, PNG). Lista de trabajo y
+      procedimientos en **`figuras/CAPTURAS-PENDIENTES.md`**. Resumen:
+      - **A (foto):** `placa-acrilico`, `montaje`.
+      - **B (osciloscopio, usar `tools/scope_capture.py`):** `pulsos-corriente`,
+        `ringing-falso`, `ruido-em`.
+      - **C (datos crudos → Claude grafica):** `daq-captura`, `bringup-etapas`,
+        `potencia-laser`, `daq-fpga-etapas`.
 - [ ] Confirmar **periodo/fechas** → actualizar título y cronograma.
 - [ ] (opcional) **D0** capacitancia del piezo (LCR) + **D1** toque sin láser.
 - [ ] **Pulido final** reporte + presentación (proofreading, refs LNA/EMI opcionales).
@@ -51,3 +58,4 @@
 
 ## Bitácora (una línea por sesión, al terminar)
 - 2026-06-23 — Windows/Claude: Bloque 0 (sync repos OK, ambos limpios). Creado este HANDOFF. Pendiente: capturar las 9 fotos + fechas.
+- 2026-06-24 — Mac/Claude: pull de `scope_capture.py` + `.gitignore`. Creado `figuras/CAPTURAS-PENDIENTES.md` (9 figuras clasificadas A/B/C + procedimientos). `Pipfile` con deps. Pendiente: capturas + datos Grupo C + fechas.
