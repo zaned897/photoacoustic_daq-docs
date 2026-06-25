@@ -335,8 +335,24 @@ especificados.
 integridad de transmisión, linealidad de la conversión y respuesta dinámica
 (metodología \textit{bring-up}).}{bringup}
 
-\figph{daq-captura.png}{Datos resultantes de la adquisición: evidencia de captura a la
-velocidad (54~MSPS) y con los niveles (12 bits, $\pm$5 V) especificados.}{captura}
+\figph{daq-captura.png}{Captura del DAQ: ventana de 270 muestras @ 54~MSPS, 12 bit
+(LSB 2.44~mV); una adquisición individual y su promedio coherente $\times$32.
+Evidencia de captura a la velocidad y niveles especificados.}{captura}
+
+Para validar la adquisición sobre una \textbf{señal real rápida}, se capturó el mismo
+transitorio sincronizado al láser con el osciloscopio de referencia (200~MS/s) y con
+el DAQ propio (54~MS/s, 12~bit). La Figura~\ref{fig:daqvsosc}, con ambas trazas
+alineadas en el instante del transitorio, muestra que el DAQ \textbf{reproduce el
+evento con timing coherente}. Las amplitudes difieren (V vs mV) porque cada
+instrumento mide en un punto/escala distinto del sistema; y a 54~MS/s el transitorio
+($\sim$25~ns FWHM en la referencia) queda en $\sim$1 muestra, coherente con la
+resolución temporal del DAQ: capta el evento y su amplitud, no su estructura de
+nanosegundos (Sección~\ref{sec:futuro}).
+
+\figph{daq-vs-osc.png}{Mismo transitorio del láser capturado por el osciloscopio de
+referencia (200~MS/s) y por el DAQ propio (54~MS/s, 12~bit), alineados en el instante
+del evento. El DAQ reproduce el transitorio con \textit{timing} coherente; las escalas
+verticales difieren por medir en puntos distintos del sistema.}{daqvsosc}
 
 \subsection{Driver de excitación V2.0 y estimación de potencia}
 El Driver V2.0 entregó pulsos de corriente estables (Figura~\ref{fig:pulsos}). A
