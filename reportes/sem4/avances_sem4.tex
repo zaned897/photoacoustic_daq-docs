@@ -71,14 +71,19 @@ certificó, con señal real, que la cadena captura, almacena y transmite sin pé
 información a \textbf{54~MSPS con 12 bits de resolución} (LSB de 2.44~mV). Se
 documenta la arquitectura del DAQ por etapas y subetapas, su validación incremental
 (\textit{bring-up}) y la evidencia de captura a la velocidad y niveles especificados.
-En paralelo, se consolidó el Driver de excitación V2.0 y la estimación de potencia
-óptica por pulso. La \textbf{detección ultrasónica} —anticipada desde el diseño como
+En paralelo, se consolidó el Driver de excitación V2.0 y se obtuvo una estimación
+preliminar de la potencia de excitación. La \textbf{detección ultrasónica} —anticipada desde el diseño como
 la etapa más crítica y compleja— se abordó en una primera caracterización: el intento
 de adquisición mostró, mediante tres controles independientes, que la señal observada
 es \textbf{acoplamiento electromagnético (pickup)} y no detección acústica, lo que
 localiza con precisión el trabajo restante (un front-end analógico de bajo ruido) y lo
-define como el foco del siguiente periodo. El resultado deja una plataforma de
-adquisición robusta y un camino claro hacia la primera imagen fotoacústica.
+define como el foco del siguiente periodo. Si bien el objetivo del periodo
+contemplaba la validación completa de la cadena fotoacústica —con el transductor
+excitado y sensando—, esa meta no se concretó; no obstante, haber diseñado y
+programado una FPGA como sistema de adquisición operativo a las frecuencias de
+muestreo y resolución requeridas, y con componentes de bajo costo, constituye un
+\textbf{hito} relevante del proyecto: deja una plataforma de adquisición robusta y
+reduce la detección a un problema bien definido de front-end analógico.
 \end{abstract}
 
 \newpage
@@ -372,17 +377,22 @@ evento. El DAQ reproduce el transitorio con \textit{timing} coherente; las magni
 verticales son distintas (tensión vs corriente).}{daqvsosc}
 
 \subsection{Driver de excitación V2.0 y estimación de potencia}
-El Driver V2.0 entregó pulsos de corriente estables (Figura~\ref{fig:pulsos}). A
-partir del monitor óptico del circuito (fotodiodo con amplificador de
-transimpedancia) se estimó la potencia óptica de salida por pulso, convirtiendo la
-tensión medida a corriente del fotodiodo según la curva de responsividad de
-referencia (Figura~\ref{fig:potencia}).
+El Driver V2.0 entregó pulsos de corriente estables, registrados como la caída de
+tensión en una resistencia de sensado (\textit{shunt}) de 0.1~$\Omega$ en serie con
+el diodo y digitalizada por el DAQ (Figura~\ref{fig:pulsos}). Combinando esa corriente
+con la tensión del diodo medida en el osciloscopio se obtuvo una \textbf{estimación
+preliminar} de la potencia eléctrica de excitación (Figura~\ref{fig:potencia}); su
+carácter es de orden de magnitud, pues ambas magnitudes provienen de adquisiciones no
+simultáneas del disparo —periódico y reproducible— y la corriente está submuestreada
+a 54~MSPS (cota inferior del pico).
 
-\figph{pulsos-corriente.png}{Pulsos de corriente del Driver V2.0.}{pulsos}
+\figph{pulsos-corriente.png}{Pulso de corriente del diodo, obtenido de la caída en el
+\textit{shunt} de 0.1~$\Omega$ digitalizada por el DAQ.}{pulsos}
 
-\figph{potencia-laser.png}{Estimación de la potencia óptica de salida a partir del
-monitor del circuito: conversión de tensión a corriente del fotodiodo según la curva
-de responsividad de referencia.}{potencia}
+\figph{potencia-laser.png}{Estimación preliminar de la potencia de excitación a partir
+de la tensión del diodo (osciloscopio) y la corriente del \textit{shunt} (DAQ),
+alineadas en el transitorio. Es un valor de orden de magnitud: capturas no simultáneas
+y corriente submuestreada.}{potencia}
 
 \subsection{Caracterización inicial de la detección}
 Al excitar el sistema, el canal del transductor (CH2) registró una onda de
@@ -402,8 +412,8 @@ controles independientes demuestran que esta señal \textbf{no es de origen acú
 \end{enumerate}
 
 La señal observada corresponde, por tanto, a \textbf{acoplamiento electromagnético
-(pickup)} sincronizado con la descarga de excitación (Figuras~\ref{fig:ruido-em} y
-\ref{fig:pickup}), y no a una detección acústica. La frecuencia de \textit{ringing}
+(pickup)} sincronizado con la descarga de excitación (Figura~\ref{fig:pickup}), y no a
+una detección acústica. La frecuencia de \textit{ringing}
 queda determinada por la red de entrada (cable e impedancia de entrada del
 digitalizador), no por la resonancia del transductor, como evidencia su persistencia
 con el sensor desconectado. Una prueba con fuente mecánica conocida (rotura de mina,
@@ -413,10 +423,6 @@ energía por debajo de \SI{1}{\mega\hertz}, mal acoplada a un transductor de
 \SI{2.5}{\mega\hertz}. Esta caracterización, lejos de ser un obstáculo inesperado,
 localiza con precisión la etapa crítica anticipada y orienta el trabajo futuro
 (Sección~\ref{sec:futuro}).
-
-\figph{ruido-em.png}{Evidencia del acoplamiento electromagnético durante el disparo
-(registrado en video): el transitorio sincronizado con la descarga de alto voltaje
-aparece en la línea de detección de alta impedancia.}{ruido-em}
 
 \figph{ringing-falso.png}{Control de descarte. CH1: pulso láser; CH2: onda de
 $\sim$150~mV pp coincidente con el disparo y con apariencia de \textit{ringing}
@@ -482,11 +488,19 @@ entrada de alta-Z (pre-amplificador).}{impedancia}
     físico quedó certificada —12 bits, 54~MSPS, sin pérdida de datos— a la velocidad y
     niveles de diseño, superando lo proyectado para el periodo.
     \item \textbf{Driver V2.0 y potencia:} la fuente de excitación operó de forma
-    estable y se habilitó la estimación de potencia óptica por pulso.
+    estable y se obtuvo una estimación preliminar de la potencia de excitación.
     \item \textbf{Detección localizada:} mediante tres controles independientes se
     demostró que la lectura observada es acoplamiento electromagnético y no detección
     acústica, acotando con precisión la etapa crítica que define el trabajo futuro.
 \end{enumerate}
+
+En síntesis, aunque el objetivo del periodo —la validación completa de la cadena
+fotoacústica, con el transductor excitado y sensando— no se alcanzó en su totalidad,
+haber diseñado e implementado una FPGA como sistema de adquisición capaz de operar a
+las frecuencias de muestreo y resolución requeridas, y con materiales de bajo costo,
+constituye un \textbf{hito} del proyecto. La plataforma de adquisición queda resuelta
+y la detección fotoacústica deja de ser una incógnita difusa para convertirse en un
+problema acotado de front-end analógico.
 
 \section{Trabajo Futuro: Cadena de Detección y Hacia la Imagen}
 \label{sec:futuro}
