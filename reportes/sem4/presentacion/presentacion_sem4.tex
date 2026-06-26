@@ -384,18 +384,22 @@ $\Rightarrow$ se omiten disparos $\Rightarrow$ \alert{promediado coherente}
 
 % ---------------------------------------------------------------------------
 \begin{frame}{Cronograma del siguiente periodo}
-\centering\scriptsize
-\begin{tabular}{cll}
+\centering
+{\footnotesize Sem 5 — \textbf{ago--dic 2026} ($\approx$18 semanas de trabajo)}\\[5pt]
+\scriptsize
+\begin{tabular}{cllc}
 \toprule
-\textbf{Bloque} & \textbf{Actividad} & \textbf{Entregable} \\
+\textbf{Bloque} & \textbf{Actividad} & \textbf{Entregable} & \textbf{$\approx$Sem.} \\
 \midrule
-B1  & Diseño del front-end (preamp, Z, shielding, sincronía) & Esquemático + ruido \\
-B1' & Validación de recepción (Plan B-1/B-2) & Señal acústica real \\
-B2  & Fabricación y prueba del front-end & Cadena caracterizada \\
-B3  & Firmware: ventana ampliada (FIFO) & A-scan útil \\
-B4  & Adquisición PA en fantoma & A-scan con TOF coherente \\
-B5  & Procesamiento (retroproyección) & Reconstrucción básica \\
-B6  & IA (denoising) + escritura & Artículo / reporte \\
+B1  & Diseño del front-end (preamp, Z, shielding, sincronía) & Esquemático + ruido & 3 \\
+B1' & Validación de recepción (Plan B-1/B-2) & Señal acústica real & 2 \\
+B2  & Fabricación y prueba del front-end & Cadena caracterizada & 3 \\
+B3  & Firmware: ventana ampliada (FIFO) & A-scan útil & 2 \\
+B4  & Adquisición PA en fantoma & A-scan con TOF coherente & 3 \\
+B5  & Procesamiento (retroproyección) & Reconstrucción básica & 2 \\
+B6  & IA (denoising) + escritura & Artículo / reporte & 3 \\
+\midrule
+\multicolumn{3}{r}{\textbf{Total}} & \textbf{18} \\
 \bottomrule
 \end{tabular}
 \end{frame}
@@ -405,26 +409,31 @@ B6  & IA (denoising) + escritura & Artículo / reporte \\
 \centering
 \resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[font=\sffamily,
-  done/.style={circle,fill=green!55!black,inner sep=2.4pt},
-  here/.style={circle,fill=orange,inner sep=4pt},
-  todo/.style={circle,draw=gray,thick,fill=white,inner sep=2.4pt},
+  done/.style={circle,fill=green!55!black,inner sep=2.2pt},
+  here/.style={circle,fill=orange,inner sep=3.6pt},
+  todo/.style={circle,draw=gray,thick,fill=white,inner sep=2.2pt},
   lbl/.style={align=center,font=\scriptsize}]
-\draw[-{Stealth[length=3mm]},very thick,gray!55] (0,0) -- (15.2,0);
-\node[done] (n2) at (1.5,0){}; \node[done] (n3) at (5,0){};
-\node[here] (n4) at (8.6,0){}; \node[todo] (n5) at (12,0){};
-\node[todo] (n6) at (14.4,0){};
-\node[lbl,above=5pt of n2]{\textbf{Sem 2} (2025)\\Fuente de excitación\\445 nm \checkmark};
-\node[lbl,below=5pt of n3]{\textbf{Sem 3} (2025)\\Driver V2 + núcleo\\digital virtual \checkmark};
-\node[lbl,above=22pt of n4]{\textbf{Sem 4} (ene--jun 2026)\\\textbf{ADC físico + DAQ}\\validado \checkmark};
-\node[lbl,below=5pt of n5]{\textbf{Sem 5}\\Front-end (preamp)\\+ A-scans};
-\node[lbl,above=5pt of n6]{\textbf{Sem 6}\\Imagen PA + IA};
+\draw[-{Stealth[length=3mm]},very thick,gray!55] (0,0) -- (17.7,0);
+\node[done] (n1) at (1,0){};   \node[done] (n2) at (3.25,0){};
+\node[done] (n3) at (5.5,0){}; \node[here] (n4) at (7.75,0){};
+\node[todo] (n5) at (10,0){};  \node[todo] (n6) at (12.25,0){};
+\node[todo] (n7) at (14.5,0){};\node[todo] (n8) at (16.75,0){};
+\node[lbl,below=5pt of n1]{\textbf{Sem 1} (2024)\\Bases + protocolo \checkmark};
+\node[lbl,above=5pt of n2]{\textbf{Sem 2} (2025)\\Excitación 445 nm \checkmark};
+\node[lbl,below=5pt of n3]{\textbf{Sem 3} (2025)\\Driver V2 + núcleo\\virtual \checkmark};
+\node[lbl,above=22pt of n4]{\textbf{Sem 4} (ene--jun 26)\\\textbf{ADC físico + DAQ} \checkmark};
+\node[lbl,below=5pt of n5]{\textbf{Sem 5} (ago--dic 26)\\Front-end (preamp)\\+ A-scans};
+\node[lbl,above=5pt of n6]{\textbf{Sem 6} (2027)\\Adquisición PA +\\reconstrucción};
+\node[lbl,below=5pt of n7]{\textbf{Sem 7} (2027)\\Dataset PA +\\DL/CNN (detección)};
+\node[lbl,above=5pt of n8]{\textbf{Sem 8} (2028)\\Transfer learning +\\segmentación $\to$ tesis};
 \node[orange,font=\bfseries,above=4pt of n4]{AQUÍ};
 \end{tikzpicture}}
 \vfill
 {\footnotesize \textbf{Hecho:} excitación + DAQ de alta velocidad validado (54 MS/s,
 12 bit) — el \alert{hito} del periodo. \quad \textbf{Aquí:} detección caracterizada
-(es \textit{pickup}; falta el front-end). \quad \textbf{Falta:} preamp $\to$ A-scans
-$\to$ imagen + IA.}
+(es \textit{pickup}; falta el front-end). \quad \textbf{Falta:} front-end $\to$
+A-scans $\to$ imagen PA $\to$ \textbf{DL/CNN + transfer learning} (detección /
+segmentación semántica).}
 \end{frame}
 
 % ---------------------------------------------------------------------------
