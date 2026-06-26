@@ -50,13 +50,28 @@ Unidad Académica de Ciencia y Tecnología de la Luz y la Materia, UAZ}
 % ---------------------------------------------------------------------------
 \begin{frame}{Continuidad del proyecto}
   \begin{itemize}
-    \item \textbf{Sem 2:} fuente de excitación — driver de avalancha, láser LED
+    \item \textbf{Sem 2 (2025):} fuente de excitación — driver de avalancha, láser LED
       445 nm, pulsos $<$30 ns, bajo costo.
-    \item \textbf{Sem 3:} Driver V2.0 + núcleo digital validado con \textit{Virtual
-      ADC} (señales sintéticas).
-    \item \textbf{Sem 4 (este):} \alert{integración del ADC físico y validación del
-      DAQ de alta velocidad}; primera caracterización de la detección.
+    \item \textbf{Sem 3 (2025):} Driver V2.0 + núcleo digital validado con
+      \textit{Virtual ADC} (señales sintéticas).
+    \item \textbf{Sem 4 (ene--jun 2026, este):} \alert{integración del ADC físico y
+      validación del DAQ}; primera caracterización de la detección.
   \end{itemize}
+  \vfill
+  \centering
+  \resizebox{0.82\linewidth}{!}{%
+  \begin{tikzpicture}[font=\sffamily,
+    b/.style={rectangle,draw=blue!55,thick,rounded corners,fill=blue!5,align=center,
+              minimum height=0.85cm,inner sep=3pt},
+    a/.style={-{Stealth[length=2mm]},very thick,draw=blue!55}]
+  \node[b] (s) {señal\\(shunt / sensor)};
+  \node[b,right=0.55cm of s] (adc) {ADC AD9226\\(físico, 12 bit)};
+  \node[b,right=0.55cm of adc] (fpga) {FPGA\\Tang Nano 9K};
+  \node[b,right=0.55cm of fpga] (pc) {PC (UART)};
+  \draw[a] (s)--(adc); \draw[a] (adc)--(fpga); \draw[a] (fpga)--(pc);
+  \end{tikzpicture}}
+  \\[3pt]{\scriptsize Validado en \textbf{Sem 4 (ene--jun 2026)}: conexión directa al
+  ADC, \textbf{sin preamplificador} (el preamp es trabajo futuro).}
 \end{frame}
 
 % ---------------------------------------------------------------------------
@@ -386,21 +401,30 @@ B6  & IA (denoising) + escritura & Artículo / reporte \\
 \end{frame}
 
 % ---------------------------------------------------------------------------
-\begin{frame}{Conclusiones}
-  \begin{enumerate}
-    \item \textbf{DAQ validado (avance central):} 12 bits, 54 MS/s, sin pérdida de
-      datos, con hardware físico.
-    \item \textbf{Driver V2.0 y potencia:} operación estable + estimación por pulso.
-    \item \textbf{Detección localizada:} la lectura es \textit{pickup}, no acústica;
-      el front-end analógico define el trabajo futuro.
-  \end{enumerate}
-  \begin{block}{El hito del periodo}
-    El objetivo era la prueba fotoacústica completa (sensor excitado y sensando). No
-    se concretó, pero \alert{diseñar y programar la FPGA como DAQ a estas frecuencias
-    de trabajo y con materiales de bajo costo es un \textbf{hito}}: la plataforma de
-    adquisición queda resuelta y la detección se reduce a un problema acotado de
-    front-end analógico.
-  \end{block}
+\begin{frame}{Mapa cronológico: hecho · aquí · falta}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[font=\sffamily,
+  done/.style={circle,fill=green!55!black,inner sep=2.4pt},
+  here/.style={circle,fill=orange,inner sep=4pt},
+  todo/.style={circle,draw=gray,thick,fill=white,inner sep=2.4pt},
+  lbl/.style={align=center,font=\scriptsize}]
+\draw[-{Stealth[length=3mm]},very thick,gray!55] (0,0) -- (15.2,0);
+\node[done] (n2) at (1.5,0){}; \node[done] (n3) at (5,0){};
+\node[here] (n4) at (8.6,0){}; \node[todo] (n5) at (12,0){};
+\node[todo] (n6) at (14.4,0){};
+\node[lbl,above=5pt of n2]{\textbf{Sem 2} (2025)\\Fuente de excitación\\445 nm \checkmark};
+\node[lbl,below=5pt of n3]{\textbf{Sem 3} (2025)\\Driver V2 + núcleo\\digital virtual \checkmark};
+\node[lbl,above=22pt of n4]{\textbf{Sem 4} (ene--jun 2026)\\\textbf{ADC físico + DAQ}\\validado \checkmark};
+\node[lbl,below=5pt of n5]{\textbf{Sem 5}\\Front-end (preamp)\\+ A-scans};
+\node[lbl,above=5pt of n6]{\textbf{Sem 6}\\Imagen PA + IA};
+\node[orange,font=\bfseries,above=4pt of n4]{AQUÍ};
+\end{tikzpicture}}
+\vfill
+{\footnotesize \textbf{Hecho:} excitación + DAQ de alta velocidad validado (54 MS/s,
+12 bit) — el \alert{hito} del periodo. \quad \textbf{Aquí:} detección caracterizada
+(es \textit{pickup}; falta el front-end). \quad \textbf{Falta:} preamp $\to$ A-scans
+$\to$ imagen + IA.}
 \end{frame}
 
 % ---------------------------------------------------------------------------
